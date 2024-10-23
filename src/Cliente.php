@@ -5,34 +5,25 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'clientes')]
-class Cliente
+class Cliente extends RegistroHotel
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
-
     #[ORM\Column(type: 'string', length: 255)]
     private $nombre;
 
-    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    #[ORM\Column(type: 'string', length: 255)]
     private $email;
 
-    // Getters y Setters
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+    #[ORM\Column(type: 'string', length: 20)]
+    private $telefono;
 
     public function getNombre(): string
     {
         return $this->nombre;
     }
 
-    public function setNombre(string $nombre): self
+    public function setNombre(string $nombre): void
     {
         $this->nombre = $nombre;
-        return $this;
     }
 
     public function getEmail(): string
@@ -40,10 +31,19 @@ class Cliente
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(string $email): void
     {
         $this->email = $email;
-        return $this;
+    }
+
+    public function getTelefono(): string
+    {
+        return $this->telefono;
+    }
+
+    public function setTelefono(string $telefono): void
+    {
+        $this->telefono = $telefono;
     }
 }
 

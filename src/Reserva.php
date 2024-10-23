@@ -5,74 +5,60 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'reservas')]
-class Reserva
+class Reserva extends RegistroHotel 
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
-    private $id;
-
     #[ORM\Column(type: 'datetime')]
     private $fechaInicio;
 
     #[ORM\Column(type: 'datetime')]
     private $fechaFin;
 
-    #[ORM\ManyToOne(targetEntity: 'Habitacion')]
-    #[ORM\JoinColumn(name: 'habitacion_id', referencedColumnName: 'id')]
+    #[ORM\ManyToOne(targetEntity: "Cliente")]
+    #[ORM\JoinColumn(nullable: false)]
+    private $cliente;
+
+    #[ORM\ManyToOne(targetEntity: "Habitacion")]
+    #[ORM\JoinColumn(nullable: false)]
     private $habitacion;
 
-    #[ORM\Column(type: 'string', length: 100)]
-    private $clienteNombre;
-
-    // Getters y Setters
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getFechaInicio(): \DateTimeInterface
+    public function getFechaInicio(): \DateTime
     {
         return $this->fechaInicio;
     }
 
-    public function setFechaInicio(\DateTimeInterface $fechaInicio): self
+    public function setFechaInicio(\DateTime $fechaInicio): void
     {
         $this->fechaInicio = $fechaInicio;
-        return $this;
     }
 
-    public function getFechaFin(): \DateTimeInterface
+    public function getFechaFin(): \DateTime
     {
         return $this->fechaFin;
     }
 
-    public function setFechaFin(\DateTimeInterface $fechaFin): self
+    public function setFechaFin(\DateTime $fechaFin): void
     {
         $this->fechaFin = $fechaFin;
-        return $this;
     }
 
-    public function getHabitacion(): ?Habitacion
+    public function getCliente(): Cliente
+    {
+        return $this->cliente;
+    }
+
+    public function setCliente(Cliente $cliente): void
+    {
+        $this->cliente = $cliente;
+    }
+
+    public function getHabitacion(): Habitacion
     {
         return $this->habitacion;
     }
 
-    public function setHabitacion(?Habitacion $habitacion): self
+    public function setHabitacion(Habitacion $habitacion): void
     {
         $this->habitacion = $habitacion;
-        return $this;
-    }
-
-    public function getClienteNombre(): string
-    {
-        return $this->clienteNombre;
-    }
-
-    public function setClienteNombre(string $clienteNombre): self
-    {
-        $this->clienteNombre = $clienteNombre;
-        return $this;
     }
 }
 
