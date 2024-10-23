@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas</title>
+    <link rel="stylesheet" href="styles/estilos.css">
+</head>
+<body>
+    <header class="header">
+
+        <h1 class="h1"> <a href="#inicio" class="a" title=""></a></h1>
+             <nav class="nav">
+                 <ul class="ul">                    
+                     <li class="li"><a href="" class="a" title="Reserva">Reserva</a></li>
+                     <li class="li"><a href="cliente.html" class="a" title="Cliente">Cliente</a></li>
+                     <li class="li"><a href="habitacion.html" class="a" title="Habitación">Habitación</a></li>
+                     <li class="li"><a href="index.html" class="a" title="Salir">Salir</a></li>
+                 </ul>
+             </nav>
+         </header>
+
+         <main class="tablaReserva">
+            
+            <h2>Listado de reservas</h2>
+            <br>
+
+            <button class="nuevaReserva" id="">
+              <a href="reserva-alta.html">Nueva Reserva</a>
+            </button>
+
+<br>
+<br>
+<!-- FILTRO PARA BUSCAR ESTADO DE RESERVAS -->
+
+<!-- estados de la reserva: confirmada, cancelada o pendiente. -->
+            <div class="filtro">
+            <select name="" id="" class="buscar" onchange="estadoReserva(this.value)">
+              <option value="e">Estado de reserva</option>
+              <option value="pen">Pendiente</option>
+              <option value="con">Confirmada</option>
+              <option value="can">Cancelada</option>
+            </select>
+            <div id="tipoEstado"></div>
+            <input type="submit" class="buscar" value="Ver reservas" disabled>
+            <!-- <button class="buscar">Buscar</button> -->
+            </div>
+        
+<!------- CALCULO DE RESERVAS ------->
+            <br>
+            
+              <form action="datos_reserva.php" method="get" class="calculoReservas">
+              <label for="cantidadReserva" class="">Cantidad de reservas:</label>
+              <input type="date" class="inputFecha" value="">
+              <input type="date" class="inputFecha" value="">
+              <input type="submit" value="Calcular reservas">
+              
+                <div>
+                <h3>Total de reservas:</h3>
+                <div id="resultado"></div>
+                </div>
+              </form> 
+            
+
+            <br><br>
+            <table>
+              <tr>
+                <th>Id</th>
+                <th>Cliente</th>
+                <th>Número habitación</th>
+                <th>Fecha ingreso</th>
+                <th>Fecha salida</th>
+                <th>Estado</th>
+                <th>Modificar / Cancelar</th>
+              </tr>
+              <tr>
+                <td>125899</td>
+                <td>Romina Andes</td>
+                <td>03</td>
+                <td>10/09/2024</td>
+                <td>15/09/2024</td>
+                <td>Reservada</td>
+                <td> <button class="modificar" type="button"><a href="reserva-modifica.html"> M</a></button> 
+                     <button class="cancelar" type="button">C</button>
+                </td>
+              </tr>
+              <tr>
+                <td>125899</td>
+                <td>Romina Andes</td>
+                <td>03</td>
+                <td>10/09/2024</td>
+                <td>15/09/2024</td>
+                <td>Reservada</td>
+                <td> <button class="modificar" type="button">M</button> 
+                    <button class="cancelar" type="button">C</button>
+               </td>
+              </tr>
+            </table>
+            
+          
+        </main>
+</body>
+</html>

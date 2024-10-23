@@ -5,22 +5,34 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'habitaciones')]
-class Habitacion extends RegistroHotel
+class Habitacion
 {
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $numero;
+    private $id;
 
-    #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
+    #[ORM\Column(type: 'string', length: 255)]
+    private $tipoHabitacion; // Nuevo atributo para el tipo de habitación
+
+    #[ORM\Column(type: 'float')]
     private $precio;
 
-    public function getNumero(): int
+    // Getters y Setters
+    public function getId(): ?int
     {
-        return $this->numero;
+        return $this->id;
     }
 
-    public function setNumero(int $numero): void
+    public function getTipoHabitacion(): string
     {
-        $this->numero = $numero;
+        return $this->tipoHabitacion;
+    }
+
+    public function setTipoHabitacion(string $tipoHabitacion): self
+    {
+        $this->tipoHabitacion = $tipoHabitacion;
+        return $this;
     }
 
     public function getPrecio(): float
@@ -28,10 +40,10 @@ class Habitacion extends RegistroHotel
         return $this->precio;
     }
 
-    public function setPrecio(float $precio): void
+    public function setPrecio(float $precio): self
     {
         $this->precio = $precio;
+        return $this;
     }
-
 }
 
