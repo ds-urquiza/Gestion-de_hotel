@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles/estilos.css">
+    <link rel="stylesheet" href="./styles/estilos.css">
 </head>
 <body>
+
     <header class="header">
 
         <h1 class="h1"> <a href="#inicio" class="a" title=""></a></h1>
@@ -19,21 +20,29 @@
                  </ul>
              </nav>
          </header>
-        <div class="formReserva"> 
-            <h1>Nueva reserva</h1>
+
+    <div class="formHabitacion">   
+        <h1>Alta de habitaciones</h1>  
     <form action="">
-        <label for="">Fecha ingreso</label>
-        <input type="date">
+        <label for="">Tipo de habitacion</label>
+        <br>
+        <select name="" id="">
+            <option value="">Habitación individual</option>
+            <option value="">Habitación doble (cama doble)</option>
+            <option value="">Habitación doble (cama separadas)</option>
+            <option value="">Habitación suite</option>
+        </select>
+        <br>
+        <input type="text">
 
-        <label for="">Fecha salida</label>
-        <input type="date">
+        <label for="">Numero habitación</label>
+        <input type="text">
 
-        <label for="">Habitación</label>
-        <input type="">
+        <label for="">Capacidad</label>
+        <input type="text">
 
-        <label for="">Cliente</label>
-        <input type="">
-        <button> <a href="cliente.html"> Nuevo cliente </a></button>
+        <label for="">Precio por noche</label>
+        <input type="text">
 
         <button> Registrar</button>
     </form>

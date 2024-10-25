@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habitaciones</title>
+    <link rel="stylesheet" href="../frontEnd/styles/estilos.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="h1"><a href="#inicio" class="a" title=""></a></h1>
+        <nav class="nav">
+            <ul class="ul">
+                <li class="li"><a href="reservas.html" class="a" title="Reserva">Reserva</a></li>
+                <li class="li"><a href="cliente.html" class="a" title="Cliente">Cliente</a></li>
+                <li class="li"><a href="habitaciones.html" class="a" title="Habitación">Habitación</a></li>
+                <li class="li"><a href="index.html" class="a" title="Salir">Salir</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="tablaHabitaciones">
+        <h2>Listado de Habitaciones</h2>
+        <br>
+        <div class="filtro">
+            <form id="filtroHabitaciones" method="GET" action="../src/listado_habitaciones.php">
+                <select name="tipo" id="tipo" class="buscar">
+                    <option value="">Tipo de habitación</option>
+                    <option value="Individual">Individual</option>
+                    <option value="Doble">Doble</option>
+                    <option value="Suite">Suite</option>
+                </select>
+                <select name="estado" id="estado" class="buscar">
+                    <option value="">Estado de habitación</option>
+                    <option value="Disponible">Disponible</option>
+                    <option value="Ocupada">Ocupada</option>
+                </select>
+                <br>
+                <button type="submit" class="buscar">Ver habitaciones</button>
+            </form>
+            <div id="tipoEstado"></div>
+        </div>
+        <br><br>
+        <div id="listado-habitaciones"></div>
+    </main>
+    <script src="../frontEnd/scripts/main.js"></script>
+</body>
+</html>
