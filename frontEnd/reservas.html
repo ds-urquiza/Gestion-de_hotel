@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservas</title>
-    <link rel="stylesheet" href="./styles/estilos.css">
+    <link rel="stylesheet" href="styles/estilos.css">
 </head>
 <body>
     <header class="header">
         <h1 class="h1"><a href="#inicio" class="a" title=""></a></h1>
         <nav class="nav">
             <ul class="ul">
-                <li class="li"><a href="reservas.html" class="a" title="Reserva">Reserva</a></li>
-                <li class="li"><a href="cliente.html" class="a" title="Cliente">Cliente</a></li>
-                <li class="li"><a href="habitacion.html" class="a" title="Habitación">Habitación</a></li>
+                <li class="li"><a href="reservas.html" class="a" title="Reservas">Reservas</a></li>
+                <li class="li"><a href="crear_reserva.html" class="a" title="Crear Reserva">Crear Reserva</a></li>
+                <li class="li"><a href="clientes.html" class="a" title="Clientes">Clientes</a></li>
+                <li class="li"><a href="habitaciones.html" class="a" title="Habitaciones">Habitaciones</a></li>
                 <li class="li"><a href="index.html" class="a" title="Salir">Salir</a></li>
             </ul>
         </nav>
@@ -32,20 +33,10 @@
             <label for="cliente">Cliente:</label>
             <input type="text" id="cliente" name="cliente">
             <br>
-            <label for="fechaInicio">Fecha Inicio:</label>
-            <input type="date" id="fechaInicio" name="fechaInicio">
-            <br>
-            <label for="fechaFin">Fecha Fin:</label>
-            <input type="date" id="fechaFin" name="fechaFin">
-            <br>
             <button type="submit">Filtrar</button>
         </form>
-
-        <div id="listado-reservas">
-            <!-- Aquí se insertará la tabla de reservas -->
-        </div>
+        <div id="listado-reservas"></div>
     </main>
-    <script src="./scripts/main.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
-

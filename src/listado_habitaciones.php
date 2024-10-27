@@ -1,4 +1,3 @@
-
 <?php
 try {
     // Conexión a la base de datos SQLite
@@ -9,7 +8,7 @@ try {
     // Procesar filtros
     $filtros = [];
     if (isset($_GET['tipo']) && !empty($_GET['tipo'])) {
-        $filtros[] = "tipo = '" . $_GET['tipo'] . "'";
+        $filtros[] = "tipo LIKE '%" . $_GET['tipo'] . "%'";
     }
     if (isset($_GET['estado']) && !empty($_GET['estado'])) {
         $filtros[] = "estado = '" . $_GET['estado'] . "'";
@@ -34,4 +33,3 @@ try {
     header('Content-Type: application/json');
     echo json_encode(['error' => $e->getMessage()]);
 }
-?>

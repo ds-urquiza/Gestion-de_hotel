@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Reserva</title>
+    <link rel="stylesheet" href="styles/estilos.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="h1"><a href="#inicio" class="a" title=""></a></h1>
+        <nav class="nav">
+            <ul class="ul">
+                <li class="li"><a href="reservas.html" class="a" title="Reservas">Reservas</a></li>
+                <li class="li"><a href="clientes.html" class="a" title="Clientes">Clientes</a></li>
+                <li class="li"><a href="habitaciones.html" class="a" title="Habitaciones">Habitaciones</a></li>
+                <li class="li"><a href="index.html" class="a" title="Salir">Salir</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Crear Nueva Reserva</h2>
+
+        <!-- Mensaje de éxito -->
+        <div id="successMessage" style="display: none; color: green;">Reserva creada con éxito.</div>
+        
+        <!-- Mensaje de error -->
+        <div id="errorMessage" style="display: none; color: red;">Error: La habitación no está disponible.</div>
+
+        <form id="formNuevaReserva" method="POST" action="../src/crearReserva.php">
+            <label for="cliente">Cliente:</label>
+            <input type="text" id="cliente" name="cliente">
+            <br>
+            <label for="habitacion">Habitación:</label>
+            <input type="text" id="habitacion" name="habitacion">
+            <br>
+            <label for="fechaInicio">Fecha de Inicio:</label>
+            <input type="date" id="fechaInicio" name="fechaInicio">
+            <br>
+            <label for="fechaFin">Fecha de Fin:</label>
+            <input type="date" id="fechaFin" name="fechaFin">
+            <br>
+            <label for="estado">Estado:</label>
+            <select id="estado" name="estado">
+                <option value="confirmada">Confirmada</option>
+                <option value="pendiente">Pendiente</option>
+                <option value="cancelada">Cancelada</option>
+            </select>
+            <br>
+            <button type="submit">Crear Reserva</button>
+        </form>
+        
+        <script>
+            // Mostrar el mensaje de éxito si el parámetro success está presente en la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('success')) {
+                document.getElementById('successMessage').style.display = 'block';
+            }
+
+            // Mostrar el mensaje de error si el parámetro error está presente en la URL
+            if (urlParams.has('error')) {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        </script>
+    </main>
+</body>
+</html>

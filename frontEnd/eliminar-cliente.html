@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Habitaciones</title>
+    <title>Eliminar Cliente</title>
     <link rel="stylesheet" href="styles/estilos.css">
 </head>
 <body>
@@ -19,22 +19,13 @@
         </nav>
     </header>
     <main>
-        <h2>Filtrar Habitaciones</h2>
-        <form id="filtroHabitaciones" method="GET" action="../src/listado_habitaciones.php">
-            <label for="tipo">Tipo:</label>
-            <input type="text" id="tipo" name="tipo">
+        <h2>Eliminar Cliente</h2>
+        <form id="formEliminarCliente" method="POST" action="../src/eliminar_cliente.php">
+            <label for="idEliminar">ID:</label>
+            <input type="text" id="idEliminar" name="id">
             <br>
-            <label for="estado">Estado:</label>
-            <select id="estado" name="estado">
-                <option value="">Todos</option>
-                <option value="disponible">Disponible</option>
-                <option value="ocupada">Ocupada</option>
-            </select>
-            <br>
-            <button type="submit">Filtrar</button>
+            <button type="submit">Eliminar</button>
         </form>
-        <div id="listado-habitaciones"></div>
     </main>
-    <script src="scripts/main.js"></script>
 </body>
 </html>

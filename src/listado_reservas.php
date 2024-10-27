@@ -13,12 +13,6 @@ try {
     if (isset($_GET['cliente']) && !empty($_GET['cliente'])) {
         $filtros[] = "clienteNombre LIKE '%" . $_GET['cliente'] . "%'";
     }
-    if (isset($_GET['fechaInicio']) && !empty($_GET['fechaInicio'])) {
-        $filtros[] = "fechaInicio >= '" . $_GET['fechaInicio'] . "'";
-    }
-    if (isset($_GET['fechaFin']) && !empty($_GET['fechaFin'])) {
-        $filtros[] = "fechaFin <= '" . $_GET['fechaFin'] . "'";
-    }
 
     $where = '';
     if (count($filtros) > 0) {
@@ -40,4 +34,5 @@ try {
     echo json_encode(['error' => $e->getMessage()]);
 }
 ?>
+
 

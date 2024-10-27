@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clientes</title>
+    <title>Registrar Cliente</title>
     <link rel="stylesheet" href="styles/estilos.css">
 </head>
 <body>
@@ -20,6 +20,9 @@
     </header>
     <main>
         <h2>Registrar Nuevo Cliente</h2>
+        <!-- Mensaje de éxito -->
+        <div id="successMessage" style="display: none; color: green;">Cliente registrado con éxito.</div>
+        
         <form id="formNuevoCliente" method="POST" action="../src/registrarCliente.php">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" autocomplete="name">
@@ -32,17 +35,16 @@
             <br>
             <button type="submit">Registrar</button>
         </form>
-        <br>
-        <h2>Filtrar Clientes</h2>
-        <form id="filtroClientes" method="GET" action="../src/listado_clientes.php">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre">
-            <br>
-            <button type="submit">Filtrar</button>
-        </form>
-        <div id="listado-clientes"></div>
+        
+        <script>
+            // Mostrar el mensaje de éxito si el parámetro success está presente en la URL
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('success')) {
+                document.getElementById('successMessage').style.display = 'block';
+            }
+        </script>
     </main>
-    <script src="scripts/main.js"></script>
 </body>
 </html>
+
 

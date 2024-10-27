@@ -10,12 +10,6 @@ try {
     if (isset($_GET['nombre']) && !empty($_GET['nombre'])) {
         $filtros[] = "nombre LIKE '%" . $_GET['nombre'] . "%'";
     }
-    if (isset($_GET['telefono']) && !empty($_GET['telefono'])) {
-        $filtros[] = "telefono LIKE '%" . $_GET['telefono'] . "%'";
-    }
-    if (isset($_GET['email']) && !empty($_GET['email'])) {
-        $filtros[] = "email LIKE '%" . $_GET['email'] . "%'";
-    }
 
     $where = '';
     if (count($filtros) > 0) {
@@ -37,3 +31,4 @@ try {
     echo json_encode(['error' => $e->getMessage()]);
 }
 ?>
+
