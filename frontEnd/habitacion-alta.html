@@ -21,31 +21,30 @@
              </nav>
          </header>
 
-    <div class="formHabitacion">   
-        <h1>Alta de habitaciones</h1>  
-    <form action="">
-        <label for="">Tipo de habitacion</label>
-        <br>
-        <select name="" id="">
-            <option value="">Habitación individual</option>
-            <option value="">Habitación doble (cama doble)</option>
-            <option value="">Habitación doble (cama separadas)</option>
-            <option value="">Habitación suite</option>
-        </select>
-        <br>
-        <input type="text">
-
-        <label for="">Numero habitación</label>
-        <input type="text">
-
-        <label for="">Capacidad</label>
-        <input type="text">
-
-        <label for="">Precio por noche</label>
-        <input type="text">
-
-        <button> Registrar</button>
-    </form>
-</div>
+         <div class="formHabitacion">
+            <h1>Alta de habitaciones</h1>
+            <form action="registrarHabitacion.php" method="POST">
+                <label for="tipo_habitacion">Tipo de habitación</label><br>
+                <select name="tipo_habitacion" id="tipo_habitacion" required>
+                    <option value="individual">Habitación individual</option>
+                    <option value="doble_matrimonial">Habitación doble</option>
+                    <option value="doble_separadas">Habitación doble</option>
+                    <option value="suite">Habitación suite</option>
+                </select>
+                <br><br>
+        
+                <label for="numero_habitacion">Número de habitación</label><br>
+                <input type="text" id="numero_habitacion" name="numero_habitacion" required><br><br>
+        
+                <label for="capacidad">Capacidad</label><br>
+                <input type="text" id="capacidad" name="capacidad" required><br><br>
+        
+                <label for="precio">Precio por noche</label><br>
+                <input type="text" id="precio" name="precio" required><br><br>
+        
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+        
 </body>
 </html>
