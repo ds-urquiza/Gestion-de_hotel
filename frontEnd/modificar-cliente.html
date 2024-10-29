@@ -20,10 +20,8 @@
     </header>
     <main>
         <h2>Modificar Cliente</h2>
-        <form id="formModificarCliente" method="POST" action="../src/modificar_cliente.php">
-            <label for="id">ID:</label>
-            <input type="text" id="id" name="id">
-            <br>
+        <form id="formModificarCliente" method="POST" action="../src/modificarCliente.php">
+            <input type="hidden" id="id" name="id">
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre">
             <br>
@@ -36,5 +34,23 @@
             <button type="submit">Modificar</button>
         </form>
     </main>
+    <script src="scripts/main.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        if (id) {
+            // Simulación de obtención de datos. En un entorno real, deberías obtener esto de tu base de datos.
+            const cliente = {
+                id: id,
+                nombre: 'Juan Perez',
+                telefono: '123456789',
+                email: 'juan@example.com'
+            };
+            document.getElementById('id').value = cliente.id;
+            document.getElementById('nombre').value = cliente.nombre;
+            document.getElementById('telefono').value = cliente.telefono;
+            document.getElementById('email').value = cliente.email;
+        }
+    </script>
 </body>
 </html>

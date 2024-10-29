@@ -1,27 +1,30 @@
 <?php
-try {
-    // Conexión a la base de datos SQLite
-    $dsn = 'sqlite:../db/database.sqlite';
-    $dbh = new PDO($dsn);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+require 'Cliente.php';
 
+try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = $_POST['id'];
         $nombre = $_POST['nombre'];
         $telefono = $_POST['telefono'];
         $email = $_POST['email'];
 
-        $sql = "UPDATE clientes SET nombre = :nombre, telefono = :telefono, email = :email WHERE id = :id";
-        $statement = $dbh->prepare($sql);
-        $statement->bindParam(':id', $id);
-        $statement->bindParam(':nombre', $nombre);
-        $statement->bindParam(':telefono', $telefono);
-        $statement->bindParam(':email', $email);
-        $statement->execute();
+        // Depuración
+        error_log("Datos recibidos: id=$id, nombre=$nombre, telefono=$telefono, email=$email");
 
-        header("Location: ../frontend/clientes.html");
+        // Instanciar la clase Cliente
+        $cliente = new \Gestionhotel\Reservas\Cliente($nombre, $telefono, $email);
+
+        // Llamar a un método para actualizar los datos
+        $cliente->actualizar($id);
+
+        // Redirigir con un mensaje de éxito
+        header("Location: ../frontend/clientes.html?success=1");
     }
-} catch (Exception $e) {
+} catch (\PDOException $e) {
+    error_log("Error: " . $e->getMessage());
     echo "Error: " . $e->getMessage();
+} catch (Exception $e) {
+    error_log("Error: " .$e->getMessage() );
 }
+
 ?>

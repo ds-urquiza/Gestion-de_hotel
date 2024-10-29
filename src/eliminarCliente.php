@@ -1,21 +1,23 @@
 <?php
-try {
-    // Conexión a la base de datos SQLite
-    $dsn = 'sqlite:../db/database.sqlite';
-    $dbh = new PDO($dsn);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+require 'Cliente.php';
 
+try {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id = $_POST['id'];
 
-        $sql = "DELETE FROM clientes WHERE id = :id";
-        $statement = $dbh->prepare($sql);
-        $statement->bindParam(':id', $id);
-        $statement->execute();
+        // Instanciar la clase Cliente
+        $cliente = new \Gestionhotel\Reservas\Cliente('', '', '');
+        $cliente->eliminar($id);
 
-        header("Location: ../frontend/clientes.html");
+        // Redirigir con un mensaje de éxito
+        header("Location: ../frontend/clientes.html?success=1");
     }
+} catch (\PDOException $e) {
+    error_log("Error: " . $e->getMessage());
+    echo "Error: " . $e->getMessage();
 } catch (Exception $e) {
+    error_log("Error: " . $e->getMessage());
     echo "Error: " . $e->getMessage();
 }
 ?>
+

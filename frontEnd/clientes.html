@@ -35,14 +35,57 @@
         <br>
         <h2>Filtrar Clientes</h2>
         <form id="filtroClientes" method="GET" action="../src/listado_clientes.php">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre">
+            <label for="nombreFiltro">Nombre:</label>
+            <input type="text" id="nombreFiltro" name="nombre">
             <br>
             <button type="submit">Filtrar</button>
         </form>
-        <div id="listado-clientes"></div>
+        <div id="listado-clientes-container"></div>
+
+        <h2>Listado de Clientes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="listado-clientes">
+                <!-- Aquí irán los clientes listados -->
+              
+            </tbody>
+        </table>
     </main>
     <script src="scripts/main.js"></script>
+    <script>
+      function obtenerClientes() {
+         fetch('../src/listado_clientes.php')
+          .then(response => response.json())
+           .then(clientes => {
+             const tbody = document.getElementById('listado-clientes');
+              tbody.innerHTML = ''; // Limpiar la tabla antes de agregar los datos 
+              clientes.forEach(cliente => { const row = document.createElement('tr'); row.innerHTML = ` <td>${cliente.id}</td> <td>${cliente.nombre}</td> <td>${cliente.telefono}</td> <td>${cliente.email}</td> <td> <a href="modificar_cliente.html?id=${cliente.id}">Modificar</a> | <a href="#" onclick="eliminarCliente(${cliente.id})">Eliminar</a> </td> `; tbody.appendChild(row); }); }) .catch(error => console.error('Error al obtener los clientes:', error)); }
+           
+        function eliminarCliente(id) {
+            if (confirm('¿Estás seguro de que deseas eliminar este cliente?')) {
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '../src/eliminarCliente.php';
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'id';
+                input.value = id;
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+        // Llamar a la función para obtener los clientes cuando la página se carga
+        obtenerClientes();
+    </script>
 </body>
 </html>
 
