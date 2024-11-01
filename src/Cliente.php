@@ -91,7 +91,7 @@ class Cliente {
     // Método para eliminar en la base de datos
     public function eliminar($id) {
         try {
-            $pdo = new PDO('sqlite:db/database.sqlite');
+            $pdo = new \PDO('sqlite:db/database.sqlite');
             $stmt = $pdo->prepare("DELETE FROM clientes WHERE id = :id"); 
             $stmt->bindParam(':id', $id);
              $stmt->execute();
