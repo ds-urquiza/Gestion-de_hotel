@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informe de Reservas</title>
+    <link rel="stylesheet" href="styles/estilos.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="h1"><a href="#inicio" class="a" title=""></a></h1>
+        <nav class="nav">
+            <ul class="ul">
+                <li class="li"><a href="reservas.html" class="a" title="Reservas">Reservas</a></li>
+                <li class="li"><a href="clientes.html" class="a" title="Clientes">Clientes</a></li>
+                <li class="li"><a href="habitaciones.html" class="a" title="Habitaciones">Habitaciones</a></li>
+                <li class="li"><a href="index.html" class="a" title="Salir">Salir</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Informe de Reservas</h2>
+        <div id="informe-reservas">
+            <!-- Aquí se mostrarán los resultados del informe -->
+        </div>
+    </main>
+    <script>
+        fetch('../src/informe_reservas.php')
+            .then(response => response.json())
+            .then(informe => {
+                const informeDiv = document.getElementById('informe-reservas');
+                if (informe.error) {
+                    informeDiv.innerHTML = `<p>Error: ${informe.error}</p>`;
+                } else {
+                    informeDiv.innerHTML = `
+                        <p>Total de Reservas: ${informe.total_reservas}</p>
+                    `;
+                }
+            })
+            .catch(error => {
+                const informeDiv = document.getElementById('informe-reservas');
+                informeDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+            });
+    </script>
+</body>
+</html>
