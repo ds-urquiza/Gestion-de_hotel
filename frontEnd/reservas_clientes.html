@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas del Cliente</title>
+    <link rel="stylesheet" href="styles/estilos.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="h1"><a href="#inicio" class="a" title=""></a></h1>
+        <nav class="nav">
+            <ul class="ul">
+                <li class="li"><a href="reservas.html" class="a" title="Reservas">Reservas</a></li>
+                <li class="li"><a href="clientes.html" class="a" title="Clientes">Clientes</a></li>
+                <li class="li"><a href="habitaciones.html" class="a" title="Habitaciones">Habitaciones</a></li>
+                <li class="li"><a href="informe_reservas.html" class="a" title="Informe de Reservas">Informe de Reservas</a></li>
+                <li class="li"><a href="index.html" class="a" title="Salir">Salir</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Reservas del Cliente</h2>
+        <form id="formBuscarReservas" method="GET" action="../src/reservas_clientes.php">
+            <label for="nombre">Nombre del Cliente:</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <br>
+            <button type="submit">Buscar</button>
+        </form>
+        <div id="listado-reservas">
+            <!-- Aquí se mostrarán las reservas del cliente -->
+        </div>
+    </main>
+    <script>
+        const form = document.getElementById('formBuscarReservas');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const nombreCliente = document.getElementById('nombre').value;
+            fetch(`../src/reservas_clientes.php?nombre=${encodeURIComponent(nombreCliente)}`)
+                .then(response => response.json())
+                .then(reservas => {
+                    const reservasDiv = document.getElementById('listado-reservas');
+                    if (reservas.error) {
+                        reservasDiv.innerHTML = `<p>Error: ${reservas.error}</p>`;
+                    } else {
+                        let res = "<table><tr><th>ID</th><th>Fecha Inicio</th><th>Fecha Fin</th><th>Estado</th><th>Habitación</th></tr>";
+                        if (reservas.length === 0) {
+                            res += "<tr><td colspan='5'>No se encontraron reservas</td></tr>";
+                        } else {
+                            reservas.forEach(reserva => {
+                                res += `<tr><td>${reserva.id}</td><td>${reserva.fechaInicio}</td><td>${reserva.fechaFin}</td><td>${reserva.estado}</td><td>${reserva.habitacion}</td></tr>`;
+                            });
+                        }
+                        res += "</table>";
+                        reservasDiv.innerHTML = res;
+                    }
+                })
+                .catch(error => {
+                    const reservasDiv = document.getElementById('listado-reservas');
+                    reservasDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+                });
+        });
+    </script>
+</body>
+</html>
